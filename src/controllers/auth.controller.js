@@ -1,5 +1,6 @@
 const userModel = require("../models/user.model")   
 const jwt = require("jsonwebtoken")
+const {sendRegistrationEmail} = require("../services/email.services")
 
 /**
  * -user register controller 
@@ -37,6 +38,8 @@ async function userRegisterController(req, res){
         },
         token : token
      })
+
+     await sendRegistrationEmail(email, name);
 }
 /**
  * -user login controller 
@@ -55,7 +58,7 @@ async function userLoginController(req, res){
     const isValidPass = await user.comparePassword(password)
     if(!isValidPass){
         return res.status(401).json({
-            message : "Invalid credentials",
+            message : "Invalid credentials", 
         })
     }
       const token = jwt.sign({id : user._id}, process.env.JWT_SECRET,{expiresIn: "3d"})
