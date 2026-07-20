@@ -26,7 +26,7 @@ transporter.verify((error, success) => {
 const sendEmail = async (to, subject, text, html) => {
   try {
     const info = await transporter.sendMail({
-      from: `"Backend Ledger" <${process.env.EMAIL_USER}>`, // sender address
+      from: `"Transactify " <${process.env.EMAIL_USER}>`, // sender address
       to, // list of receivers
       subject, // Subject line
       text, // plain text body
@@ -42,21 +42,21 @@ const sendEmail = async (to, subject, text, html) => {
 
 // send email for user register
 async function sendRegistrationEmail(userEmail, name){
-    const subject = "Welcome to Backend Ledger" ;
+    const subject = "Welcome to Transactify " ;
 
     const text = `
     Dear ${name},
     
-    Thank you for registering with Backend Ledger!
+    Thank you for registering with Transactify !
     
     Your account has been created successfully.
     
     You can now log in to your account using your email and password.
     
     Best regards,
-    The Backend Ledger Team
+    The Transactify  Team
     `
-    const html = `<p>Dear ${name},</p><p>Thank you for registering with Backend Ledger!</p><p>Your account has been created successfully.</p><p>You can now log in to your account using your email and password.</p><p>Best regards,</p><p>The Backend Ledger Team</p>`
+    const html = `<p>Dear ${name},</p><p>Thank you for registering with Transactify !</p><p>Your account has been created successfully.</p><p>You can now log in to your account using your email and password.</p><p>Best regards,</p><p>The Transactify  Team</p>`
 
     await sendEmail(userEmail, subject, text, html);
 }
